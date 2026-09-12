@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Sport Club | دوري المدرسة</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: #0b0f0d;
+      color: white;
+    }
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 30px 20px;
+      background:
+        linear-gradient(rgba(5, 10, 7, .82), rgba(5, 10, 7, .95)),
+        radial-gradient(circle at top, #159447, #0b0f0d 65%);
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1000px;
+    }
+
+    .logo {
+      text-align: center;
+      font-size: 22px;
+      font-weight: bold;
+      letter-spacing: 3px;
+      color: #39e675;
+      margin-bottom: 45px;
+    }
+
+    .content {
+      text-align: center;
+    }
+
+    .content h1 {
+      font-size: clamp(45px, 10vw, 90px);
+      font-weight: 900;
+      line-height: .95;
+      margin-bottom: 20px;
+    }
+
+    .content h1 span {
+      color: #39e675;
+    }
+
+    .subtitle {
+      font-size: 22px;
+      font-weight: bold;
+      margin-bottom: 15px;
+    }
+
+    .description {
+      max-width: 650px;
+      margin: auto;
+      color: #b8c2bc;
+      font-size: 17px;
+      line-height: 1.8;
+    }
+
+    .registration {
+      margin: 45px auto 0;
+      max-width: 500px;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(57,230,117,.25);
+      padding: 30px;
+      border-radius: 22px;
+      backdrop-filter: blur(10px);
+      text-align: right;
+    }
+
+    .registration h2 {
+      text-align: center;
+      margin-bottom: 25px;
+      font-size: 25px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      color: #dce5df;
+      font-weight: bold;
+    }
+
+    input,
+    select {
+      width: 100%;
+      padding: 15px;
+      margin-bottom: 18px;
+      border-radius: 12px;
+      border: 1px solid #303a34;
+      background: #121914;
+      color: white;
+      outline: none;
+      font-size: 16px;
+    }
+
+    input:focus,
+    select:focus {
+      border-color: #39e675;
+    }
+
+    button {
+      width: 100%;
+      padding: 16px;
+      border: none;
+      border-radius: 12px;
+      background: #39e675;
+      color: #061009;
+      font-size: 18px;
+      font-weight: 900;
+      cursor: pointer;
+      transition: .2s;
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+      background: #55ed8a;
+    }
+
+    button:disabled {
+      opacity: .6;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .form-error {
+      display: none;
+      color: #ff8080;
+      font-size: 14px;
+      margin: -8px 0 16px;
+      text-align: center;
+    }
+    .form-error.show { display: block; }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+      margin-top: 45px;
+    }
+
+    .feature {
+      padding: 22px;
+      border-radius: 18px;
+      background: rgba(255,255,255,.05);
+      text-align: center;
+    }
+
+    .feature .icon {
+      font-size: 32px;
+      margin-bottom: 10px;
+    }
+
+    .feature h3 {
+      margin-bottom: 8px;
+    }
+
+    .feature p {
+      color: #9fa9a2;
+      font-size: 14px;
+    }
+
+    .note {
+      text-align: center;
+      margin-top: 20px;
+      color: #7f8b83;
+      font-size: 12px;
+    }
+
+    footer {
+      text-align: center;
+      color: #68736c;
+      margin-top: 45px;
+      font-size: 13px;
+    }
+
+    .admin-link {
+      display: block;
+      text-align: center;
+      margin-top: 14px;
+      color: #55ed8a;
+      font-size: 13px;
+      text-decoration: none;
+      opacity: .75;
+    }
+    .admin-link:hover { opacity: 1; }
+
+    @media (max-width: 650px) {
+      .features {
+        grid-template-columns: 1fr;
+      }
+
+      .registration {
+        padding: 22px;
+      }
+    }
+
+    /* ===================== ADMIN (staff dashboard) ===================== */
+    #admin-screen { display: none; }
+
+    .admin-wrap {
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: right;
+    }
+
+    .admin-card {
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(57,230,117,.25);
+      padding: 26px;
+      border-radius: 22px;
+      backdrop-filter: blur(10px);
+      margin-bottom: 22px;
+    }
+
+    .admin-card h2 { margin-bottom: 18px; font-size: 22px; }
+
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 14px;
+      margin-bottom: 10px;
+    }
+
+    .stat-box {
+      background: rgba(255,255,255,.05);
+      border-radius: 14px;
+      padding: 16px;
+      text-align: center;
+    }
+
+    .stat-num {
+      font-size: 30px;
+      font-weight: 900;
+      color: #39e675;
+    }
+
+    .stat-label {
+      font-size: 12px;
+      color: #9fa9a2;
+      margin-top: 4px;
+    }
+
+    .roster-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+      margin-top: 10px;
+    }
+    .roster-table th {
+      text-align: right;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+      color: #7f8b83;
+      padding: 8px 6px;
+      border-bottom: 1.5px solid #303a34;
+    }
+    .roster-table td {
+      padding: 9px 6px;
+      border-bottom: 1px solid #232b26;
+      color: #dce5df;
+    }
+    .roster-table tr:last-child td { border-bottom: none; }
+
+    .admin-actions {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 22px;
+      flex-wrap: wrap;
+    }
+    .admin-actions button, .admin-actions a {
+      flex: 1;
+      min-width: 120px;
+      text-align: center;
+      padding: 12px;
+      border-radius: 12px;
+      font-weight: bold;
+      cursor: pointer;
+      border: 1px solid #303a34;
+      background: #121914;
+      color: #dce5df;
+      text-decoration: none;
+      font-size: 14px;
+    }
+    .admin-actions .primary { background: #39e675; color: #061009; border: none; }
+
+    .admin-note {
+      color: #7f8b83;
+      font-size: 12px;
+      margin-top: 16px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ===================== MAIN SITE ===================== -->
+  <section class="hero" id="main-screen">
+
+    <div class="container">
+
+      <div class="logo">
+        ⚽ SPORT CLUB
+      </div>
+
+      <div class="content">
+
+        <h1>
+          السنة هذي<br>
+          <span>غير.</span>
+        </h1>
+
+        <p class="subtitle">
+          مستعد تدخل المنافسة؟
+        </p>
+
+        <p class="description">
+          Sport Club هو دوري كرة القدم الخاص بالمدرسة.
+          كوّن فريقك، نافس زملاءك، وأثبت أن فريقك يستحق يكون البطل.
+          هذه السنة المنافسة أقوى والحماس أكبر!
+        </p>
+
+
+        <!-- التسجيل -->
+
+        <div class="registration">
+
+          <h2>📝 سجّل في Sport Club</h2>
+
+          <form id="signup-form">
+
+            <label for="name">
+              اسم الطالب
+            </label>
+
+            <input
+              type="text"
+              id="name"
+              placeholder="اكتب اسمك الكامل"
+              required
+            >
+
+
+            <label for="grade">
+              الفصل
+            </label>
+
+            <select
+              id="grade"
+              required
+            >
+
+              <option value="">
+                اختر الفصل
+              </option>
+
+              <option value="Grade 9">
+                Grade 9
+              </option>
+
+              <option value="Grade 10">
+                Grade 10
+              </option>
+
+              <option value="Grade 11">
+                Grade 11
+              </option>
+
+              <option value="Grade 12">
+                Grade 12
+              </option>
+
+            </select>
+
+            <p class="form-error" id="form-error">حدث خطأ أثناء الحفظ — تأكد من اتصالك بالإنترنت وحاول مرة ثانية.</p>
+
+            <button type="submit" id="submit-btn">
+              🚀 سجّل الآن
+            </button>
+
+          </form>
+
+          <p class="note">
+            بالتسجيل أنت تؤكد رغبتك في المشاركة في Sport Club. بعد التسجيل بتنتقل مباشرة لمجموعة الواتساب.
+          </p>
+
+        </div>
+
+
+        <!-- المميزات -->
+
+        <div class="features">
+
+          <div class="feature">
+
+            <div class="icon">
+              ⚽
+            </div>
+
+            <h3>
+              دوري كرة القدم
+            </h3>
+
+            <p>
+              منافسات حماسية بين طلاب المدرسة.
+            </p>
+
+          </div>
+
+
+          <div class="feature">
+
+            <div class="icon">
+              🏆
+            </div>
+
+            <h3>
+              نافس على البطولة
+            </h3>
+
+            <p>
+              كوّن فريقك وخل هدفك هو الكأس.
+            </p>
+
+          </div>
+
+
+          <div class="feature">
+
+            <div class="icon">
+              🔥
+            </div>
+
+            <h3>
+              السنة هذي غير
+            </h3>
+
+            <p>
+              حماس، منافسة، وذكريات ما تنسى.
+            </p>
+
+          </div>
+
+        </div>
+
+        <a href="#" class="admin-link" id="show-admin-link">لوحة تحكم الطاقم — Staff dashboard</a>
+
+        <footer>
+          SPORT CLUB © 2026 — School Football League
+        </footer>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- ===================== STAFF DASHBOARD ===================== -->
+  <section class="hero" id="admin-screen">
+    <div class="container admin-wrap">
+
+      <div class="logo" style="text-align:right;">⚽ SPORT CLUB — لوحة الطاقم</div>
+
+      <div class="admin-card" id="admin-login-card">
+        <h2>تسجيل دخول الطاقم</h2>
+        <label for="admin-email">البريد الإلكتروني</label>
+        <input type="email" id="admin-email" placeholder="you@school.edu" autocomplete="username">
+        <label for="admin-pass">كلمة المرور</label>
+        <input type="password" id="admin-pass" placeholder="ادخل كلمة المرور" autocomplete="current-password">
+        <p class="form-error" id="admin-error">البريد أو كلمة المرور غير صحيحة — حاول مرة ثانية.</p>
+        <button id="admin-login-btn" class="primary" style="border:none;">تسجيل الدخول</button>
+      </div>
+
+      <div id="admin-dashboard" style="display:none;">
+        <div class="admin-actions">
+          <button class="primary" onclick="loadAdminStats()">تحديث — Refresh</button>
+          <button onclick="handleAdminSignOut()">تسجيل خروج</button>
+          <a href="#" onclick="showMain(event)">رجوع للموقع</a>
+        </div>
+        <div class="admin-card" id="admin-body">
+          <p class="admin-note">جارِ التحميل…</p>
+        </div>
+      </div>
+
+      <a href="#" class="admin-link" onclick="showMain(event)">&larr; رجوع للموقع الرئيسي</a>
+    </div>
+  </section>
+
+  <!-- ===================== FIREBASE ===================== -->
+  <!-- Reuses the same Firebase project as the club-guide site. Its config is
+       public-safe by design; real protection is the Firestore rules below. -->
+  <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-auth-compat.js"></script>
+  <script>
+    const FIREBASE_CONFIG = {
+      apiKey: "AIzaSyDxip-XQhphbe0AG3Chk7boxTTHtbP35ak",
+      authDomain: "club-guide.firebaseapp.com",
+      projectId: "club-guide",
+      storageBucket: "club-guide.firebasestorage.app",
+      messagingSenderId: "235716344322",
+      appId: "1:235716344322:web:e711e57c5ddcfa7840051b"
+    };
+    firebase.initializeApp(FIREBASE_CONFIG);
+    const db = firebase.firestore();
+    const auth = firebase.auth();
+
+    const WHATSAPP_LINK = "https://chat.whatsapp.com/EGjpjfMlJf5Kvf8IUk7K5J?s=cl&p=i&mlu=4&ilr=4";
+
+    function showMain(e){
+      if(e) e.preventDefault();
+      document.getElementById('main-screen').style.display = 'flex';
+      document.getElementById('admin-screen').style.display = 'none';
+    }
+    function showAdmin(e){
+      if(e) e.preventDefault();
+      document.getElementById('main-screen').style.display = 'none';
+      document.getElementById('admin-screen').style.display = 'flex';
+    }
+    document.getElementById('show-admin-link').addEventListener('click', showAdmin);
+
+    // =========================================================
+    // REGISTRATION → SAVE TO FIRESTORE → REDIRECT TO WHATSAPP
+    // =========================================================
+    document.getElementById('signup-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const grade = document.getElementById('grade').value;
+      const err = document.getElementById('form-error');
+      const btn = document.getElementById('submit-btn');
+
+      err.classList.remove('show');
+      if(!name || !grade){
+        err.textContent = 'الرجاء تعبئة الاسم والفصل.';
+        err.classList.add('show');
+        return;
+      }
+
+      btn.disabled = true;
+      btn.textContent = 'جارِ الحفظ…';
+      try{
+        await db.collection('sportRegistrations').add({
+          name: name,
+          grade: grade,
+          createdAt: firebase.firestore.FieldValue.serverTimestamp()
+        });
+        window.location.href = WHATSAPP_LINK;
+      }catch(ex){
+        console.error('Could not save registration', ex);
+        err.textContent = 'حدث خطأ أثناء الحفظ — تأكد من اتصالك بالإنترنت وحاول مرة ثانية.';
+        err.classList.add('show');
+        btn.disabled = false;
+        btn.textContent = '🚀 سجّل الآن';
+      }
+    });
+
+    // =========================================================
+    // STAFF DASHBOARD
+    // =========================================================
+    document.getElementById('admin-login-btn').addEventListener('click', async () => {
+      const email = document.getElementById('admin-email').value.trim();
+      const pass = document.getElementById('admin-pass').value;
+      const err = document.getElementById('admin-error');
+      const btn = document.getElementById('admin-login-btn');
+      err.classList.remove('show');
+      if(!email || !pass){
+        err.textContent = 'الرجاء إدخال البريد وكلمة المرور.';
+        err.classList.add('show');
+        return;
+      }
+      btn.disabled = true;
+      btn.textContent = 'جارِ الدخول…';
+      try{
+        await auth.signInWithEmailAndPassword(email, pass);
+        document.getElementById('admin-login-card').style.display = 'none';
+        document.getElementById('admin-dashboard').style.display = 'block';
+        loadAdminStats();
+      }catch(ex){
+        console.error('Admin sign-in failed', ex);
+        err.textContent = 'البريد أو كلمة المرور غير صحيحة — حاول مرة ثانية.';
+        err.classList.add('show');
+      }finally{
+        btn.disabled = false;
+        btn.textContent = 'تسجيل الدخول';
+      }
+    });
+
+    function handleAdminSignOut(){
+      auth.signOut();
+      document.getElementById('admin-login-card').style.display = 'block';
+      document.getElementById('admin-dashboard').style.display = 'none';
+      document.getElementById('admin-email').value = '';
+      document.getElementById('admin-pass').value = '';
+    }
+
+    async function loadAdminStats(){
+      const body = document.getElementById('admin-body');
+      body.innerHTML = '<p class="admin-note">جارِ التحميل…</p>';
+      let regs = [];
+      try{
+        const snap = await db.collection('sportRegistrations').get();
+        snap.forEach(doc => regs.push(doc.data()));
+      }catch(ex){
+        console.error('Could not load dashboard data', ex);
+        body.innerHTML = '<p class="admin-note">تعذّر تحميل البيانات. تأكد من قواعد الأمان في Firestore ومن أنك مسجّل دخول كطاقم.</p>';
+        return;
+      }
+
+      const gradeCounts = { 'Grade 9':0, 'Grade 10':0, 'Grade 11':0, 'Grade 12':0 };
+      regs.forEach(r => { if(r.grade) gradeCounts[r.grade] = (gradeCounts[r.grade]||0) + 1; });
+
+      let html = `<h2>نشاط التسجيل</h2>`;
+      html += `<div class="stat-grid">
+        <div class="stat-box"><div class="stat-num">${regs.length}</div><div class="stat-label">إجمالي المسجلين</div></div>
+        ${Object.entries(gradeCounts).map(([g,c]) => `<div class="stat-box"><div class="stat-num">${c}</div><div class="stat-label">${g}</div></div>`).join('')}
+      </div>`;
+
+      const sorted = [...regs].sort((a,b) => (a.name||'').localeCompare(b.name||''));
+      html += `<table class="roster-table"><thead><tr><th>الاسم</th><th>الفصل</th></tr></thead><tbody>`;
+      if(sorted.length === 0){
+        html += `<tr><td colspan="2">لا يوجد تسجيلات بعد.</td></tr>`;
+      } else {
+        sorted.forEach(r => {
+          html += `<tr><td>${r.name || '—'}</td><td>${r.grade || '—'}</td></tr>`;
+        });
+      }
+      html += `</tbody></table>`;
+      html += `<p class="admin-note">البيانات من مجموعة "sportRegistrations" في نفس مشروع Firebase الخاص بموقع النوادي.</p>`;
+
+      body.innerHTML = html;
+    }
+  </script>
+
+</body>
+</html>
