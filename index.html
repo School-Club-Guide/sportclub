@@ -1,350 +1,627 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Sport Club | دوري المدرسة</title>
+  <title>Sport Club EISJ</title>
 
   <style>
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      font-family: Arial, sans-serif;
+      font-family: Tahoma, Arial, sans-serif;
+    }
+
+    html {
+      scroll-behavior: smooth;
     }
 
     body {
-      background: #0b0f0d;
-      color: white;
-    }
-
-    .hero {
       min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 30px 20px;
+      color: white;
+
       background:
-        linear-gradient(rgba(5, 10, 7, .82), rgba(5, 10, 7, .95)),
-        radial-gradient(circle at top, #159447, #0b0f0d 65%);
+        radial-gradient(circle at top right, #743cff 0%, transparent 35%),
+        radial-gradient(circle at bottom left, #087cff 0%, transparent 35%),
+        linear-gradient(135deg, #09001f, #13004a 50%, #001b48);
     }
 
     .container {
-      width: 100%;
-      max-width: 1000px;
+      width: 92%;
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    /* الشريط العلوي */
+
+    nav {
+      padding: 22px 0;
+    }
+
+    .nav-box {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      padding: 18px 22px;
+
+      border: 1px solid rgba(255,255,255,.15);
+      background: rgba(255,255,255,.08);
+      backdrop-filter: blur(15px);
+
+      border-radius: 20px;
+    }
+
+    .brand {
+      font-size: 24px;
+      font-weight: bold;
+      direction: ltr;
+    }
+
+    /* الصفحة الرئيسية */
+
+    .hero {
+      min-height: 78vh;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      text-align: center;
+
+      padding: 35px 0 75px;
+    }
+
+    .hero-content {
+      max-width: 800px;
     }
 
     .logo {
-      text-align: center;
-      font-size: 22px;
-      font-weight: bold;
-      letter-spacing: 3px;
-      color: #39e675;
-      margin-bottom: 45px;
+      width: 175px;
+      height: 175px;
+
+      object-fit: contain;
+
+      border-radius: 30px;
+
+      margin-bottom: 24px;
+
+      filter: drop-shadow(0 15px 30px rgba(0,0,0,.4));
     }
 
-    .content {
-      text-align: center;
-    }
+    .badge {
+      display: inline-block;
 
-    .content h1 {
-      font-size: clamp(45px, 10vw, 90px);
-      font-weight: 900;
-      line-height: .95;
+      padding: 10px 20px;
+
+      border-radius: 50px;
+
+      background: rgba(255,255,255,.10);
+
+      border: 1px solid rgba(255,255,255,.18);
+
+      color: #ddd4ff;
+
       margin-bottom: 20px;
     }
 
-    .content h1 span {
-      color: #39e675;
+    h1 {
+      font-size: clamp(42px, 8vw, 78px);
+
+      line-height: 1.1;
+
+      margin-bottom: 20px;
+
+      font-weight: 900;
     }
 
-    .subtitle {
-      font-size: 22px;
+    h1 span {
+      background: linear-gradient(90deg, #b18cff, #5cc7ff);
+
+      -webkit-background-clip: text;
+
+      color: transparent;
+    }
+
+    .hero p {
+      font-size: 20px;
+
+      line-height: 2;
+
+      color: #d7d2e8;
+
+      margin-bottom: 30px;
+    }
+
+    .button {
+      display: inline-block;
+
+      padding: 16px 34px;
+
+      border-radius: 15px;
+
+      text-decoration: none;
+
+      color: white;
+
+      font-size: 18px;
+
       font-weight: bold;
+
+      background: linear-gradient(90deg, #6d35ff, #168cff);
+
+      box-shadow: 0 15px 35px rgba(76,55,255,.35);
+
+      transition: .25s;
+    }
+
+    .button:hover {
+      transform: translateY(-3px);
+    }
+
+    /* الأقسام */
+
+    section {
+      padding: 80px 0;
+    }
+
+    .section-title {
+      text-align: center;
+
+      font-size: 38px;
+
       margin-bottom: 15px;
     }
 
-    .description {
-      max-width: 650px;
-      margin: auto;
-      color: #b8c2bc;
+    .section-description {
+      text-align: center;
+
+      color: #bbb5d0;
+
+      margin-bottom: 40px;
+
       font-size: 17px;
+    }
+
+    .cards {
+      display: grid;
+
+      grid-template-columns: repeat(3, 1fr);
+
+      gap: 20px;
+    }
+
+    .card {
+      padding: 30px;
+
+      border-radius: 25px;
+
+      background: rgba(255,255,255,.08);
+
+      border: 1px solid rgba(255,255,255,.12);
+
+      backdrop-filter: blur(15px);
+
+      text-align: center;
+    }
+
+    .card .icon {
+      font-size: 45px;
+
+      margin-bottom: 15px;
+    }
+
+    .card h3 {
+      font-size: 22px;
+
+      margin-bottom: 12px;
+    }
+
+    .card p {
+      color: #c5bfd5;
+
       line-height: 1.8;
     }
 
-    .registration {
-      margin: 45px auto 0;
-      max-width: 500px;
-      background: rgba(255,255,255,.06);
-      border: 1px solid rgba(57,230,117,.25);
-      padding: 30px;
-      border-radius: 22px;
-      backdrop-filter: blur(10px);
-      text-align: right;
+    /* التسجيل */
+
+    .form-wrapper {
+      max-width: 650px;
+
+      margin: auto;
+
+      padding: 35px;
+
+      border-radius: 30px;
+
+      background: rgba(255,255,255,.08);
+
+      border: 1px solid rgba(255,255,255,.15);
+
+      backdrop-filter: blur(20px);
+
+      box-shadow: 0 25px 70px rgba(0,0,0,.25);
     }
 
-    .registration h2 {
-      text-align: center;
-      margin-bottom: 25px;
-      font-size: 25px;
+    .form-group {
+      margin-bottom: 20px;
     }
 
     label {
       display: block;
-      margin-bottom: 8px;
-      color: #dce5df;
+
+      margin-bottom: 9px;
+
       font-weight: bold;
+
+      color: #eee;
     }
 
     input,
     select {
       width: 100%;
+
       padding: 15px;
-      margin-bottom: 18px;
-      border-radius: 12px;
-      border: 1px solid #303a34;
-      background: #121914;
-      color: white;
+
+      border: 1px solid rgba(255,255,255,.15);
+
+      border-radius: 13px;
+
       outline: none;
+
+      background: rgba(0,0,0,.25);
+
+      color: white;
+
       font-size: 16px;
+    }
+
+    input::placeholder {
+      color: #aaa3ba;
+    }
+
+    select option {
+      color: black;
+
+      background: white;
     }
 
     input:focus,
     select:focus {
-      border-color: #39e675;
+      border-color: #8e63ff;
+
+      box-shadow:
+        0 0 0 3px rgba(142,99,255,.15);
     }
 
-    button {
+    .submit-btn {
       width: 100%;
-      padding: 16px;
+
       border: none;
-      border-radius: 12px;
-      background: #39e675;
-      color: #061009;
-      font-size: 18px;
-      font-weight: 900;
+
       cursor: pointer;
-      transition: .2s;
+
+      padding: 17px;
+
+      border-radius: 14px;
+
+      color: white;
+
+      font-size: 18px;
+
+      font-weight: bold;
+
+      background: linear-gradient(90deg, #6d35ff, #168cff);
+
+      margin-top: 10px;
+
+      transition: .25s;
     }
 
-    button:hover {
+    .submit-btn:hover {
       transform: translateY(-2px);
-      background: #55ed8a;
     }
 
-    button:disabled {
-      opacity: .6;
-      cursor: not-allowed;
-      transform: none;
-    }
+    /* التواصل */
 
-    .form-error {
-      display: none;
-      color: #ff8080;
-      font-size: 14px;
-      margin: -8px 0 16px;
-      text-align: center;
-    }
-    .form-error.show { display: block; }
+    .contact-box {
+      max-width: 650px;
 
-    .features {
+      margin: auto;
+
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+
       gap: 15px;
-      margin-top: 45px;
     }
 
-    .feature {
-      padding: 22px;
+    .contact {
+      display: block;
+
+      text-decoration: none;
+
+      color: white;
+
+      padding: 20px;
+
       border-radius: 18px;
-      background: rgba(255,255,255,.05);
+
+      background: rgba(255,255,255,.08);
+
+      border: 1px solid rgba(255,255,255,.12);
+
       text-align: center;
+
+      font-size: 18px;
+
+      transition: .25s;
     }
 
-    .feature .icon {
-      font-size: 32px;
-      margin-bottom: 10px;
+    .contact:hover {
+      background: rgba(255,255,255,.14);
+
+      transform: translateY(-2px);
     }
 
-    .feature h3 {
-      margin-bottom: 8px;
-    }
-
-    .feature p {
-      color: #9fa9a2;
-      font-size: 14px;
-    }
-
-    .note {
-      text-align: center;
-      margin-top: 20px;
-      color: #7f8b83;
-      font-size: 12px;
-    }
+    /* أسفل الموقع */
 
     footer {
+      padding: 35px 0;
+
       text-align: center;
-      color: #68736c;
-      margin-top: 45px;
-      font-size: 13px;
+
+      border-top: 1px solid rgba(255,255,255,.1);
+
+      color: #aaa3ba;
+
+      line-height: 2;
     }
 
-    .admin-link {
-      display: block;
-      text-align: center;
-      margin-top: 14px;
-      color: #55ed8a;
-      font-size: 13px;
-      text-decoration: none;
-      opacity: .75;
-    }
-    .admin-link:hover { opacity: 1; }
+    footer strong {
+      color: white;
 
-    @media (max-width: 650px) {
-      .features {
+      direction: ltr;
+
+      display: inline-block;
+    }
+
+    /* الجوال */
+
+    @media(max-width:700px) {
+
+      .cards {
         grid-template-columns: 1fr;
       }
 
-      .registration {
-        padding: 22px;
+      .hero {
+        min-height: 75vh;
       }
-    }
 
-    /* ===================== ADMIN (staff dashboard) ===================== */
-    #admin-screen { display: none; }
+      .form-wrapper {
+        padding: 25px 20px;
+      }
 
-    .admin-wrap {
-      max-width: 800px;
-      margin: 0 auto;
-      text-align: right;
-    }
+      section {
+        padding: 60px 0;
+      }
 
-    .admin-card {
-      background: rgba(255,255,255,.06);
-      border: 1px solid rgba(57,230,117,.25);
-      padding: 26px;
-      border-radius: 22px;
-      backdrop-filter: blur(10px);
-      margin-bottom: 22px;
-    }
+      .brand {
+        font-size: 21px;
+      }
 
-    .admin-card h2 { margin-bottom: 18px; font-size: 22px; }
-
-    .stat-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-      gap: 14px;
-      margin-bottom: 10px;
-    }
-
-    .stat-box {
-      background: rgba(255,255,255,.05);
-      border-radius: 14px;
-      padding: 16px;
-      text-align: center;
-    }
-
-    .stat-num {
-      font-size: 30px;
-      font-weight: 900;
-      color: #39e675;
-    }
-
-    .stat-label {
-      font-size: 12px;
-      color: #9fa9a2;
-      margin-top: 4px;
-    }
-
-    .roster-table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 14px;
-      margin-top: 10px;
-    }
-    .roster-table th {
-      text-align: right;
-      font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: .05em;
-      color: #7f8b83;
-      padding: 8px 6px;
-      border-bottom: 1.5px solid #303a34;
-    }
-    .roster-table td {
-      padding: 9px 6px;
-      border-bottom: 1px solid #232b26;
-      color: #dce5df;
-    }
-    .roster-table tr:last-child td { border-bottom: none; }
-
-    .admin-actions {
-      display: flex;
-      gap: 12px;
-      margin-bottom: 22px;
-      flex-wrap: wrap;
-    }
-    .admin-actions button, .admin-actions a {
-      flex: 1;
-      min-width: 120px;
-      text-align: center;
-      padding: 12px;
-      border-radius: 12px;
-      font-weight: bold;
-      cursor: pointer;
-      border: 1px solid #303a34;
-      background: #121914;
-      color: #dce5df;
-      text-decoration: none;
-      font-size: 14px;
-    }
-    .admin-actions .primary { background: #39e675; color: #061009; border: none; }
-
-    .admin-note {
-      color: #7f8b83;
-      font-size: 12px;
-      margin-top: 16px;
+      .logo {
+        width: 150px;
+        height: 150px;
+      }
     }
   </style>
 </head>
 
+
 <body>
 
-  <!-- ===================== MAIN SITE ===================== -->
-  <section class="hero" id="main-screen">
+
+  <!-- الشريط العلوي -->
+
+  <nav>
 
     <div class="container">
 
-      <div class="logo">
-        ⚽ SPORT CLUB
+      <div class="nav-box">
+
+        <div class="brand">
+          Sport Club EISJ
+        </div>
+
       </div>
 
-      <div class="content">
+    </div>
+
+  </nav>
+
+
+  <!-- الصفحة الرئيسية -->
+
+  <header class="hero">
+
+    <div class="container">
+
+      <div class="hero-content">
+
+
+        <!-- صورة اللوقو -->
+
+        <img
+          src="logo.jpeg"
+          alt="شعار النادي الرياضي"
+          class="logo"
+        >
+
+
+        <div class="badge">
+          ⚽ النادي الرياضي في المدرسة
+        </div>
+
 
         <h1>
-          السنة هذي<br>
-          <span>غير.</span>
+          السنة هذي <span>غير.</span>
         </h1>
 
-        <p class="subtitle">
-          مستعد تدخل المنافسة؟
+
+        <p>
+          مستعد تدخل المنافسة؟ 🔥
+          <br>
+
+          دوري كرة قدم في المدرسة يجمع الطلاب
+          في منافسة حماسية وقوية.
         </p>
 
-        <p class="description">
-          Sport Club هو دوري كرة القدم الخاص بالمدرسة.
-          كوّن فريقك، نافس زملاءك، وأثبت أن فريقك يستحق يكون البطل.
-          هذه السنة المنافسة أقوى والحماس أكبر!
-        </p>
+
+        <a href="#register" class="button">
+          🚀 سجل الآن
+        </a>
 
 
-        <!-- التسجيل -->
+      </div>
 
-        <div class="registration">
+    </div>
 
-          <h2>📝 سجّل في Sport Club</h2>
+  </header>
 
-          <form id="signup-form">
+
+  <!-- عن النادي -->
+
+  <section>
+
+    <div class="container">
+
+
+      <h2 class="section-title">
+        جاهز للمنافسة؟
+      </h2>
+
+
+      <p class="section-description">
+        كوّن فريقك، ادخل المنافسة، وخلك جزء من البطولة.
+      </p>
+
+
+      <div class="cards">
+
+
+        <div class="card">
+
+          <div class="icon">
+            ⚽
+          </div>
+
+          <h3>
+            دوري المدرسة
+          </h3>
+
+          <p>
+            بطولة كرة قدم داخل المدرسة تجمع الطلاب
+            في منافسة حماسية.
+          </p>
+
+        </div>
+
+
+        <div class="card">
+
+          <div class="icon">
+            🔥
+          </div>
+
+          <h3>
+            المنافسة
+          </h3>
+
+          <p>
+            تحدى الفرق الثانية وأثبت مهاراتك
+            داخل الملعب.
+          </p>
+
+        </div>
+
+
+        <div class="card">
+
+          <div class="icon">
+            🏆
+          </div>
+
+          <h3>
+            البطولة
+          </h3>
+
+          <p>
+            قاتل من أجل فريقك ووصل إلى النهائي
+            وخذ البطولة.
+          </p>
+
+        </div>
+
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- التسجيل -->
+
+  <section id="register">
+
+    <div class="container">
+
+
+      <h2 class="section-title">
+        التسجيل
+      </h2>
+
+
+      <p class="section-description">
+        عبّي بياناتك وسجّل في دوري كرة القدم.
+      </p>
+
+
+      <div class="form-wrapper">
+
+
+        <form
+          action="https://formsubmit.co/Samihass231@gmail.com"
+          method="POST"
+        >
+
+
+          <input
+            type="hidden"
+            name="_subject"
+            value="⚽ تسجيل جديد في Sport Club EISJ"
+          >
+
+
+          <input
+            type="hidden"
+            name="_captcha"
+            value="false"
+          >
+
+
+          <input
+            type="hidden"
+            name="_template"
+            value="table"
+          >
+
+
+          <!-- اسم الطالب -->
+
+          <div class="form-group">
 
             <label for="name">
               اسم الطالب
@@ -353,17 +630,64 @@
             <input
               type="text"
               id="name"
+              name="اسم الطالب"
               placeholder="اكتب اسمك الكامل"
               required
             >
 
+          </div>
+
+
+          <!-- القريد -->
+
+          <div class="form-group">
 
             <label for="grade">
-              الفصل
+              القريد
             </label>
 
             <select
               id="grade"
+              name="القريد"
+              required
+            >
+
+              <option value="">
+                اختر القريد
+              </option>
+
+              <option value="9">
+                9
+              </option>
+
+              <option value="10">
+                10
+              </option>
+
+              <option value="11">
+                11
+              </option>
+
+              <option value="12">
+                12
+              </option>
+
+            </select>
+
+          </div>
+
+
+          <!-- الفصل -->
+
+          <div class="form-group">
+
+            <label for="class">
+              الفصل
+            </label>
+
+            <select
+              id="class"
+              name="الفصل"
               required
             >
 
@@ -371,100 +695,54 @@
                 اختر الفصل
               </option>
 
-              <option value="Grade 9">
-                Grade 9
+              <option value="A">
+                A
               </option>
 
-              <option value="Grade 10">
-                Grade 10
+              <option value="C">
+                C
               </option>
 
-              <option value="Grade 11">
-                Grade 11
-              </option>
-
-              <option value="Grade 12">
-                Grade 12
+              <option value="D">
+                D
               </option>
 
             </select>
 
-            <p class="form-error" id="form-error">حدث خطأ أثناء الحفظ — تأكد من اتصالك بالإنترنت وحاول مرة ثانية.</p>
-
-            <button type="submit" id="submit-btn">
-              🚀 سجّل الآن
-            </button>
-
-          </form>
-
-          <p class="note">
-            بالتسجيل أنت تؤكد رغبتك في المشاركة في Sport Club. بعد التسجيل بتنتقل مباشرة لمجموعة الواتساب.
-          </p>
-
-        </div>
+          </div>
 
 
-        <!-- المميزات -->
+          <!-- رقم الجوال -->
 
-        <div class="features">
+          <div class="form-group">
 
-          <div class="feature">
+            <label for="phone">
+              رقم الجوال
+            </label>
 
-            <div class="icon">
-              ⚽
-            </div>
-
-            <h3>
-              دوري كرة القدم
-            </h3>
-
-            <p>
-              منافسات حماسية بين طلاب المدرسة.
-            </p>
+            <input
+              type="tel"
+              id="phone"
+              name="رقم الجوال"
+              placeholder="اكتب رقم جوالك"
+              inputmode="tel"
+              required
+            >
 
           </div>
 
 
-          <div class="feature">
+          <!-- زر التسجيل -->
 
-            <div class="icon">
-              🏆
-            </div>
-
-            <h3>
-              نافس على البطولة
-            </h3>
-
-            <p>
-              كوّن فريقك وخل هدفك هو الكأس.
-            </p>
-
-          </div>
+          <button
+            type="submit"
+            class="submit-btn"
+          >
+            🚀 إرسال التسجيل
+          </button>
 
 
-          <div class="feature">
-
-            <div class="icon">
-              🔥
-            </div>
-
-            <h3>
-              السنة هذي غير
-            </h3>
-
-            <p>
-              حماس، منافسة، وذكريات ما تنسى.
-            </p>
-
-          </div>
-
-        </div>
-
-        <a href="#" class="admin-link" id="show-admin-link">لوحة تحكم الطاقم — Staff dashboard</a>
-
-        <footer>
-          SPORT CLUB © 2026 — School Football League
-        </footer>
+        </form>
 
       </div>
 
@@ -472,181 +750,74 @@
 
   </section>
 
-  <!-- ===================== STAFF DASHBOARD ===================== -->
-  <section class="hero" id="admin-screen">
-    <div class="container admin-wrap">
 
-      <div class="logo" style="text-align:right;">⚽ SPORT CLUB — لوحة الطاقم</div>
+  <!-- التواصل -->
 
-      <div class="admin-card" id="admin-login-card">
-        <h2>تسجيل دخول الطاقم</h2>
-        <label for="admin-email">البريد الإلكتروني</label>
-        <input type="email" id="admin-email" placeholder="you@school.edu" autocomplete="username">
-        <label for="admin-pass">كلمة المرور</label>
-        <input type="password" id="admin-pass" placeholder="ادخل كلمة المرور" autocomplete="current-password">
-        <p class="form-error" id="admin-error">البريد أو كلمة المرور غير صحيحة — حاول مرة ثانية.</p>
-        <button id="admin-login-btn" class="primary" style="border:none;">تسجيل الدخول</button>
+  <section>
+
+    <div class="container">
+
+
+      <h2 class="section-title">
+        تواصل معنا
+      </h2>
+
+
+      <p class="section-description">
+        إذا عندك أي استفسار، تواصل معنا.
+      </p>
+
+
+      <div class="contact-box">
+
+
+        <a
+          href="tel:0568171636"
+          class="contact"
+        >
+          📞 سامي عبدالله — 0568171636
+        </a>
+
+
+        <a
+          href="tel:0599371560"
+          class="contact"
+        >
+          📞 جبرتي — 0599371560
+        </a>
+
+
       </div>
 
-      <div id="admin-dashboard" style="display:none;">
-        <div class="admin-actions">
-          <button class="primary" onclick="loadAdminStats()">تحديث — Refresh</button>
-          <button onclick="handleAdminSignOut()">تسجيل خروج</button>
-          <a href="#" onclick="showMain(event)">رجوع للموقع</a>
-        </div>
-        <div class="admin-card" id="admin-body">
-          <p class="admin-note">جارِ التحميل…</p>
-        </div>
-      </div>
-
-      <a href="#" class="admin-link" onclick="showMain(event)">&larr; رجوع للموقع الرئيسي</a>
     </div>
+
   </section>
 
-  <!-- ===================== FIREBASE ===================== -->
-  <!-- Reuses the same Firebase project as the club-guide site. Its config is
-       public-safe by design; real protection is the Firestore rules below. -->
-  <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-auth-compat.js"></script>
-  <script>
-    const FIREBASE_CONFIG = {
-      apiKey: "AIzaSyDxip-XQhphbe0AG3Chk7boxTTHtbP35ak",
-      authDomain: "club-guide.firebaseapp.com",
-      projectId: "club-guide",
-      storageBucket: "club-guide.firebasestorage.app",
-      messagingSenderId: "235716344322",
-      appId: "1:235716344322:web:e711e57c5ddcfa7840051b"
-    };
-    firebase.initializeApp(FIREBASE_CONFIG);
-    const db = firebase.firestore();
-    const auth = firebase.auth();
 
-    const WHATSAPP_LINK = "https://chat.whatsapp.com/EGjpjfMlJf5Kvf8IUk7K5J?s=cl&p=i&mlu=4&ilr=4";
+  <!-- أسفل الموقع -->
 
-    function showMain(e){
-      if(e) e.preventDefault();
-      document.getElementById('main-screen').style.display = 'flex';
-      document.getElementById('admin-screen').style.display = 'none';
-    }
-    function showAdmin(e){
-      if(e) e.preventDefault();
-      document.getElementById('main-screen').style.display = 'none';
-      document.getElementById('admin-screen').style.display = 'flex';
-    }
-    document.getElementById('show-admin-link').addEventListener('click', showAdmin);
+  <footer>
 
-    // =========================================================
-    // REGISTRATION → SAVE TO FIRESTORE → REDIRECT TO WHATSAPP
-    // =========================================================
-    document.getElementById('signup-form').addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const name = document.getElementById('name').value.trim();
-      const grade = document.getElementById('grade').value;
-      const err = document.getElementById('form-error');
-      const btn = document.getElementById('submit-btn');
+    <div class="container">
 
-      err.classList.remove('show');
-      if(!name || !grade){
-        err.textContent = 'الرجاء تعبئة الاسم والفصل.';
-        err.classList.add('show');
-        return;
-      }
+      <p>
+        <strong>
+          Sport Club EISJ
+        </strong>
+      </p>
 
-      btn.disabled = true;
-      btn.textContent = 'جارِ الحفظ…';
-      try{
-        await db.collection('sportRegistrations').add({
-          name: name,
-          grade: grade,
-          createdAt: firebase.firestore.FieldValue.serverTimestamp()
-        });
-        window.location.href = WHATSAPP_LINK;
-      }catch(ex){
-        console.error('Could not save registration', ex);
-        err.textContent = 'حدث خطأ أثناء الحفظ — تأكد من اتصالك بالإنترنت وحاول مرة ثانية.';
-        err.classList.add('show');
-        btn.disabled = false;
-        btn.textContent = '🚀 سجّل الآن';
-      }
-    });
+      <p>
+        النادي الرياضي بالمدرسة الدولية الإثيوبية
+      </p>
 
-    // =========================================================
-    // STAFF DASHBOARD
-    // =========================================================
-    document.getElementById('admin-login-btn').addEventListener('click', async () => {
-      const email = document.getElementById('admin-email').value.trim();
-      const pass = document.getElementById('admin-pass').value;
-      const err = document.getElementById('admin-error');
-      const btn = document.getElementById('admin-login-btn');
-      err.classList.remove('show');
-      if(!email || !pass){
-        err.textContent = 'الرجاء إدخال البريد وكلمة المرور.';
-        err.classList.add('show');
-        return;
-      }
-      btn.disabled = true;
-      btn.textContent = 'جارِ الدخول…';
-      try{
-        await auth.signInWithEmailAndPassword(email, pass);
-        document.getElementById('admin-login-card').style.display = 'none';
-        document.getElementById('admin-dashboard').style.display = 'block';
-        loadAdminStats();
-      }catch(ex){
-        console.error('Admin sign-in failed', ex);
-        err.textContent = 'البريد أو كلمة المرور غير صحيحة — حاول مرة ثانية.';
-        err.classList.add('show');
-      }finally{
-        btn.disabled = false;
-        btn.textContent = 'تسجيل الدخول';
-      }
-    });
+      <p>
+        جميع الحقوق محفوظة © 2026
+      </p>
 
-    function handleAdminSignOut(){
-      auth.signOut();
-      document.getElementById('admin-login-card').style.display = 'block';
-      document.getElementById('admin-dashboard').style.display = 'none';
-      document.getElementById('admin-email').value = '';
-      document.getElementById('admin-pass').value = '';
-    }
+    </div>
 
-    async function loadAdminStats(){
-      const body = document.getElementById('admin-body');
-      body.innerHTML = '<p class="admin-note">جارِ التحميل…</p>';
-      let regs = [];
-      try{
-        const snap = await db.collection('sportRegistrations').get();
-        snap.forEach(doc => regs.push(doc.data()));
-      }catch(ex){
-        console.error('Could not load dashboard data', ex);
-        body.innerHTML = '<p class="admin-note">تعذّر تحميل البيانات. تأكد من قواعد الأمان في Firestore ومن أنك مسجّل دخول كطاقم.</p>';
-        return;
-      }
+  </footer>
 
-      const gradeCounts = { 'Grade 9':0, 'Grade 10':0, 'Grade 11':0, 'Grade 12':0 };
-      regs.forEach(r => { if(r.grade) gradeCounts[r.grade] = (gradeCounts[r.grade]||0) + 1; });
-
-      let html = `<h2>نشاط التسجيل</h2>`;
-      html += `<div class="stat-grid">
-        <div class="stat-box"><div class="stat-num">${regs.length}</div><div class="stat-label">إجمالي المسجلين</div></div>
-        ${Object.entries(gradeCounts).map(([g,c]) => `<div class="stat-box"><div class="stat-num">${c}</div><div class="stat-label">${g}</div></div>`).join('')}
-      </div>`;
-
-      const sorted = [...regs].sort((a,b) => (a.name||'').localeCompare(b.name||''));
-      html += `<table class="roster-table"><thead><tr><th>الاسم</th><th>الفصل</th></tr></thead><tbody>`;
-      if(sorted.length === 0){
-        html += `<tr><td colspan="2">لا يوجد تسجيلات بعد.</td></tr>`;
-      } else {
-        sorted.forEach(r => {
-          html += `<tr><td>${r.name || '—'}</td><td>${r.grade || '—'}</td></tr>`;
-        });
-      }
-      html += `</tbody></table>`;
-      html += `<p class="admin-note">البيانات من مجموعة "sportRegistrations" في نفس مشروع Firebase الخاص بموقع النوادي.</p>`;
-
-      body.innerHTML = html;
-    }
-  </script>
 
 </body>
 </html>
