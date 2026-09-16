@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>التسجيل - Sport Club EISJ</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f1020;
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --card-border: rgba(255, 255, 255, 0.08);
+            --primary-gradient: linear-gradient(135deg, #4f46e5 0%, #9333ea 100%);
+            --text-color: #f3f4f6;
+            --text-muted: #9ca3af;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Cairo', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem 1rem;
+        }
+
+        .form-container {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 2.5rem;
+            backdrop-filter: blur(12px);
+            width: 100%;
+            max-width: 550px;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+
+        .form-container h1 {
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 1.8rem;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .input-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .input-group input, .input-group select {
+            width: 100%;
+            padding: 0.85rem 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--card-border);
+            border-radius: 10px;
+            color: white;
+            font-size: 1rem;
+            font-family: 'Cairo', sans-serif;
+        }
+
+        .input-group input:focus, .input-group select:focus {
+            outline: none;
+            border-color: #9333ea;
+        }
+
+        .submit-btn {
+            width: 100%;
+            background: var(--primary-gradient);
+            color: white;
+            border: none;
+            padding: 1rem;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            font-family: 'Cairo', sans-serif;
+            transition: opacity 0.2s;
+        }
+
+        .submit-btn:hover {
+            opacity: 0.9;
+        }
+
+        #success-card {
+            display: none;
+            text-align: center;
+        }
+
+        #success-card h2 {
+            margin-bottom: 1rem;
+            color: #10b981;
+        }
+
+        #success-card p {
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .whatsapp-btn {
+            display: inline-block;
+            background: #25d366;
+            color: white;
+            text-decoration: none;
+            padding: 0.85rem 1.5rem;
+            border-radius: 10px;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .whatsapp-btn:hover {
+            opacity: 0.9;
+        }
+
+        .reset-btn {
+            background: transparent;
+            color: var(--text-muted);
+            border: 1px solid var(--card-border);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-family: 'Cairo', sans-serif;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="form-container">
+        <div id="form-view">
+            <h1>التسجيل في نادي EISJ الرياضي</h1>
+            <form id="registration-form">
+                <div class="input-group">
+                    <label for="fullName">اسم الطالب</label>
+                    <input type="text" id="fullName" required placeholder="أدخل اسمك الكامل">
+                </div>
+                <div class="input-group">
+                    <label for="grade">الصف الدراسي</label>
+                    <input type="text" id="grade" required placeholder="مثال: الأول الثانوي">
+                </div>
+                <div class="input-group">
+                    <label for="number">الرقم التعريفي / الجوال</label>
+                    <input type="text" id="number" required placeholder="أدخل رقمك بدون مسافات زائدة">
+                </div>
+                <div class="input-group">
+                    <label for="club">النشاط الرياضي المختار</label>
+                    <select id="club" required>
+                        <option value="" disabled selected>اختر الرياضة المفضلة</option>
+                        <option value="كرة القدم">كرة القدم</option>
+                        <option value="كرة السلة">كرة السلة</option>
+                        <option value="السباحة">السباحة</option>
+                        <option value="اللياقة البدنية">اللياقة البدنية</option>
+                    </select>
+                </div>
+                <button type="submit" class="submit-btn" id="submit-btn-text">إرسال التسجيل</button>
+            </form>
+        </div>
+
+        <div id="success-card">
+            <h2>تم تسجيلك بنجاح! 🎉</h2>
+            <p>لقد تم حفظ بياناتك في قاعدة البيانات بنجاح. للانضمام إلى مجموعة الواتساب الخاصة بالنشاط المختار، اضغط على الزر أدناه:</p>
+            <a href="#" id="whatsapp-link" class="whatsapp-btn" target="_blank">الانضمام إلى مجموعة الواتساب</a>
+            <br>
+            <button class="reset-btn" onclick="resetForm()">تسجيل طالب آخر</button>
+        </div>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "YOUR_API_KEY",
+            authDomain: "YOUR_AUTH_DOMAIN",
+            projectId: "YOUR_PROJECT_ID",
+            storageBucket: "YOUR_STORAGE_BUCKET",
+            messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+            appId: "YOUR_APP_ID"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        const whatsappGroups = {
+            "كرة القدم": "https://chat.whatsapp.com/YOUR_FOOTBALL_GROUP_LINK",
+            "كرة السلة": "https://chat.whatsapp.com/YOUR_BASKETBALL_GROUP_LINK",
+            "السباحة": "https://chat.whatsapp.com/YOUR_SWIMMING_GROUP_LINK",
+            "اللياقة البدنية": "https://chat.whatsapp.com/YOUR_FITNESS_GROUP_LINK"
+        };
+
+        document.getElementById('registration-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const fullName = document.getElementById('fullName').value.trim();
+            const grade = document.getElementById('grade').value.trim();
+            const number = document.getElementById('number').value.trim();
+            const club = document.getElementById('club').value;
+            const submitBtn = document.getElementById('submit-btn-text');
+
+            const studentKey = number.replace(/\s+/g, '_');
+
+            submitBtn.textContent = "جاري الحفظ...";
+            submitBtn.disabled = true;
+
+            try {
+                await setDoc(doc(db, "registrations", studentKey), {
+                    fullName,
+                    grade,
+                    number,
+                    club,
+                    timestamp: new Date()
+                });
+
+                document.getElementById('form-view').style.display = 'none';
+                document.getElementById('success-card').style.display = 'block';
+                document.getElementById('whatsapp-link').href = whatsappGroups[club] || "#";
+
+            } catch (error) {
+                console.error("Error writing document: ", error);
+                alert("حدث خطأ أثناء التسجيل. تأكد من اتصال الإنترنت.");
+                submitBtn.textContent = "إرسال التسجيل";
+                submitBtn.disabled = false;
+            }
+        });
+
+        window.resetForm = function() {
+            document.getElementById('registration-form').reset();
+            document.getElementById('success-card').style.display = 'none';
+            document.getElementById('form-view').style.display = 'block';
+            document.getElementById('submit-btn-text').textContent = "إرسال التسجيل";
+            document.getElementById('submit-btn-text').disabled = false;
+        }
+    </script>
+</body>
+</html>
