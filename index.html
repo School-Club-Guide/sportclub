@@ -175,7 +175,12 @@
     }
 
     /* ===================== ADMIN (staff dashboard) ===================== */
-    #admin-screen { display: none; }
+    #admin-screen {
+      display: none;
+      padding: 40px 20px;
+      min-height: 100vh;
+      background: linear-gradient(rgba(5, 10, 7, .90), rgba(5, 10, 7, .98));
+    }
     .admin-wrap {
       max-width: 800px;
       margin: 0 auto;
@@ -264,62 +269,64 @@
 <body>
 
   <!-- ===================== MAIN SITE ===================== -->
-  <section class="hero" id="main-screen">
-    <div class="container">
-      <div class="logo">⚽ SPORT CLUB</div>
-      <div class="content">
-        <h1>السنة هذي<br><span>غير.</span></h1>
-        <p class="subtitle">مستعد تدخل المنافسة؟</p>
-        <p class="description">Sport Club هو دوري كرة القدم الخاص بالمدرسة. كوّن فريقك، نافس زملاءك، وأثبت أن فريقك يستحق يكون البطل. هذه السنة المنافسة أقوى والحماس أكبر!</p>
+  <div id="main-screen">
+    <section class="hero">
+      <div class="container">
+        <div class="logo">⚽ SPORT CLUB</div>
+        <div class="content">
+          <h1>السنة هذي<br><span>غير.</span></h1>
+          <p class="subtitle">مستعد تدخل المنافسة؟</p>
+          <p class="description">Sport Club هو دوري كرة القدم الخاص بالمدرسة. كوّن فريقك، نافس زملاءك، وأثبت أن فريقك يستحق يكون البطل. هذه السنة المنافسة أقوى والحماس أكبر!</p>
 
-        <!-- التسجيل -->
-        <div class="registration">
-          <h2>📝 سجّل في Sport Club</h2>
-          <form id="signup-form">
-            <label for="name">اسم الطالب</label>
-            <input type="text" id="name" placeholder="اكتب اسمك الكامل" required>
+          <!-- التسجيل -->
+          <div class="registration">
+            <h2>📝 سجّل في Sport Club</h2>
+            <form id="signup-form">
+              <label for="name">اسم الطالب</label>
+              <input type="text" id="name" placeholder="اكتب اسمك الكامل" required>
 
-            <label for="grade">الفصل</label>
-            <select id="grade" required>
-              <option value="">اختر الفصل</option>
-              <option value="Grade 9">Grade 9</option>
-              <option value="Grade 10">Grade 10</option>
-              <option value="Grade 11">Grade 11</option>
-              <option value="Grade 12">Grade 12</option>
-            </select>
-            <p class="form-error" id="form-error">حدث خطأ أثناء الحفظ — تأكد من اتصالك بالإنترنت وحاول مرة ثانية.</p>
-            <button type="submit" id="submit-btn">🚀 سجّل الآن</button>
-          </form>
-          <p class="note">بالتسجيل أنت تؤكد رغبتك في المشاركة في Sport Club. بعد التسجيل بتنتقل مباشرة لمجموعة الواتساب.</p>
+              <label for="grade">الفصل</label>
+              <select id="grade" required>
+                <option value="">اختر الفصل</option>
+                <option value="Grade 9">Grade 9</option>
+                <option value="Grade 10">Grade 10</option>
+                <option value="Grade 11">Grade 11</option>
+                <option value="Grade 12">Grade 12</option>
+              </select>
+              <p class="form-error" id="form-error">حدث خطأ أثناء الحفظ — تأكد من اتصالك بالإنترنت وحاول مرة ثانية.</p>
+              <button type="submit" id="submit-btn">🚀 سجّل الآن</button>
+            </form>
+            <p class="note">بالتسجيل أنت تؤكد رغبتك في المشاركة في Sport Club. بعد التسجيل بتنتقل مباشرة لمجموعة الواتساب.</p>
+          </div>
+
+          <!-- المميزات -->
+          <div class="features">
+            <div class="feature">
+              <div class="icon">⚽</div>
+              <h3>دوري كرة القدم</h3>
+              <p>منافسات حماسية بين طلاب المدرسة.</p>
+            </div>
+            <div class="feature">
+              <div class="icon">🏆</div>
+              <h3>نافس على البطولة</h3>
+              <p>كوّن فريقك وخل هدفك هو الكأس.</p>
+            </div>
+            <div class="feature">
+              <div class="icon">🔥</div>
+              <h3>السنة هذي غير</h3>
+              <p>حماس، منافسة، وذكريات ما تنسى.</p>
+            </div>
+          </div>
+
+          <a href="#" class="admin-link" id="show-admin-link">لوحة تحكم الطاقم — Staff dashboard</a>
+          <footer>SPORT CLUB © 2026 — School Football League</footer>
         </div>
-
-        <!-- المميزات -->
-        <div class="features">
-          <div class="feature">
-            <div class="icon">⚽</div>
-            <h3>دوري كرة القدم</h3>
-            <p>منافسات حماسية بين طلاب المدرسة.</p>
-          </div>
-          <div class="feature">
-            <div class="icon">🏆</div>
-            <h3>نافس على البطولة</h3>
-            <p>كوّن فريقك وخل هدفك هو الكأس.</p>
-          </div>
-          <div class="feature">
-            <div class="icon">🔥</div>
-            <h3>السنة هذي غير</h3>
-            <p>حماس، منافسة، وذكريات ما تنسى.</p>
-          </div>
-        </div>
-
-        <a href="#" class="admin-link" id="show-admin-link">لوحة تحكم الطاقم — Staff dashboard</a>
-        <footer>SPORT CLUB © 2026 — School Football League</footer>
       </div>
-    </div>
-  </section>
+    </section>
+  </div>
 
   <!-- ===================== STAFF DASHBOARD ===================== -->
-  <section class="hero" id="admin-screen">
+  <div id="admin-screen">
     <div class="container admin-wrap">
       <div class="logo" style="text-align:right;">⚽ SPORT CLUB — لوحة الطاقم</div>
       
@@ -346,7 +353,7 @@
 
       <a href="#" class="admin-link" onclick="showMain(event)">&larr; رجوع للموقع الرئيسي</a>
     </div>
-  </section>
+  </div>
 
   <!-- ===================== FIREBASE ===================== -->
   <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-app-compat.js"></script>
@@ -369,13 +376,13 @@
 
     function showMain(e){
       if(e) e.preventDefault();
-      document.getElementById('main-screen').style.display = 'flex';
+      document.getElementById('main-screen').style.display = 'block';
       document.getElementById('admin-screen').style.display = 'none';
     }
     function showAdmin(e){
       if(e) e.preventDefault();
       document.getElementById('main-screen').style.display = 'none';
-      document.getElementById('admin-screen').style.display = 'flex';
+      document.getElementById('admin-screen').style.display = 'block';
     }
     document.getElementById('show-admin-link').addEventListener('click', showAdmin);
 
