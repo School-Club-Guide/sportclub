@@ -343,6 +343,16 @@
     }
     .form-error.show { display: block; }
 
+    .form-success {
+      display: none;
+      color: #9dfdc1;
+      font-size: 16px;
+      margin-top: 15px;
+      text-align: center;
+      font-weight: bold;
+    }
+    .form-success.show { display: block; }
+
     /* التواصل */
 
     .contact-box {
@@ -811,6 +821,7 @@
           </div>
 
           <p class="form-error" id="form-error">تأكد من تعبئة جميع الحقول ثم حاول مرة ثانية.</p>
+          <p class="form-success" id="form-success">تم إرسال تسجيلك بنجاح! شكراً لك.</p>
 
           <!-- زر التسجيل -->
 
@@ -956,8 +967,6 @@
     const db = firebase.firestore();
     const auth = firebase.auth();
 
-    const WHATSAPP_LINK = "https://chat.whatsapp.com/EGjpjfMlJf5Kvf8IUk7K5J?s=cl&p=i&mlu=4&ilr=4";
-
     function showMain(e){
       if(e) e.preventDefault();
       document.getElementById('main-screen').style.display = 'block';
@@ -971,7 +980,7 @@
     document.getElementById('show-admin-link').addEventListener('click', showAdmin);
 
     // =========================================================
-    // REGISTRATION → SAVE TO FIRESTORE → REDIRECT TO WHATSAPP
+    // REGISTRATION → SAVE TO FIRESTORE → SUCCESS MESSAGE
     // =========================================================
     document.getElementById('signup-form').addEventListener('submit', async (e) => {
       e.preventDefault();
@@ -980,9 +989,12 @@
       const cls = document.getElementById('class').value;
       const phone = document.getElementById('phone').value.trim();
       const err = document.getElementById('form-error');
+      const succ = document.getElementById('form-success');
       const btn = document.getElementById('submit-btn');
 
       err.classList.remove('show');
+      succ.classList.remove('show');
+
       if(!name || !grade || !cls || !phone){
         err.textContent = 'الرجاء تعبئة جميع الحقول.';
         err.classList.add('show');
@@ -999,7 +1011,12 @@
           phone: phone,
           createdAt: firebase.firestore.FieldValue.serverTimestamp()
         });
-        window.location.href = WHATSAPP_LINK;
+        
+        // Clear form and show success message
+        document.getElementById('signup-form').reset();
+        succ.classList.add('show');
+        btn.textContent = '🚀 إرسال التسجيل';
+        btn.disabled = false;
       }catch(ex){
         console.error('Could not save registration', ex);
         err.textContent = 'حدث خطأ أثناء الحفظ — تأكد من اتصالك بالإنترنت وحاول مرة ثانية.';
